@@ -351,7 +351,7 @@ check("힌트: 정답을 빼고 서로 다른 오답 2개", () => {
   - `recordScore(mode: string, category: string, score: number, date = todayString()) -> { saved: boolean, rank: number | null }`: 키 `` `${mode}|${category}` ``의 표에 `insertScore()`를 적용하고 `setItem`으로 저장함. `setItem`이 예외를 내면 `{ saved: false, rank: null }`. `date` 인자는 Task 12의 콘솔 확인에 씀
   - `showResult()`: 첫 판이고(`state.firstScore === null`) `MODES[state.mode].leaderboard`면 `recordScore()`를 부르고 "이번 점수는 N위", "상위 10위 밖", "순위표를 저장할 수 없음" 중 하나를 보여 줌
 
-- [ ] Step 1: `runSelfTests()`에 점검 5개를 더함
+- [x] Step 1: `runSelfTests()`에 점검 5개를 더함
 
 ```js
 check("저장값 해석: 없거나 깨지거나 객체가 아니면 빈 순위표", () =>
@@ -375,10 +375,10 @@ check("순위표: 10위 밖이면 rank가 null", () => {
 });
 ```
 
-- [ ] Step 2: `node script.js`. 기대 출력: 새 점검 5개가 FAIL, 끝 줄 `점검 실패: 5개`
-- [ ] Step 3: 위 내용을 씀(PRD 7절, 4.2항)
-- [ ] Step 4: `node script.js`. 기대 출력: 끝 줄 `점검 통과: 15개`
-- [ ] Step 5: `script.js`, `index.html`을 커밋함
+- [x] Step 2: `node script.js`. 기대 출력: 새 점검 5개가 FAIL, 끝 줄 `점검 실패: 5개`
+- [x] Step 3: 위 내용을 씀(PRD 7절, 4.2항)
+- [x] Step 4: `node script.js`. 기대 출력: 끝 줄 `점검 통과: 15개`
+- [x] Step 5: `script.js`, `index.html`을 커밋함
 
 ### Task 11: 순위표 화면
 
@@ -390,9 +390,9 @@ check("순위표: 10위 밖이면 rank가 null", () => {
   - 시작 화면의 [순위표] 버튼, `screen-leaderboard` 섹션, 순위표 화면의 [처음으로]
   - `renderLeaderboard() -> void`: 모드 `speed`, `hint` 순, 카테고리는 `CATEGORIES` 순으로 표 8개를 그림. 표 제목은 `MODES[mode].name`과 카테고리 이름, 행은 순위, 날짜, 점수. 기록이 없는 표는 "기록 없음"
 
-- [ ] Step 1: 위 내용을 씀(PRD 4.2항). 표 그리기는 화면 작업이라 점검 함수로 보지 않고 Task 12의 3-1, 3-3~3-5 항목으로 봄
-- [ ] Step 2: `node script.js`. 기대 출력: 끝 줄 `점검 통과: 15개`
-- [ ] Step 3: `index.html`, `script.js`를 커밋함
+- [x] Step 1: 위 내용을 씀(PRD 4.2항). 표 그리기는 화면 작업이라 점검 함수로 보지 않고 Task 12의 3-1, 3-3~3-5 항목으로 봄
+- [x] Step 2: `node script.js`. 기대 출력: 끝 줄 `점검 통과: 15개`
+- [x] Step 3: `index.html`, `script.js`를 커밋함
 
 ### Task 12: 3단계 사용자 확인
 
@@ -409,6 +409,7 @@ check("순위표: 10위 밖이면 rank가 null", () => {
 | 3-6 | 콘솔에 `Storage.prototype.setItem = () => { throw new Error("blocked"); };`를 넣고 스피드 한 판을 풀면 "순위표를 저장할 수 없음"이 나오고 [처음으로]가 동작함. 새로고침하면 원래대로 돌아옴 |
 | 3-7 | 크롬에서 file://로 연 index.html의 기록이 새로고침 뒤에도 남음 |
 | 3-8 | 사파리에서 file://로 연 index.html의 기록이 새로고침 뒤에도 남고, `index.html?test`의 콘솔 끝 줄이 `점검 통과: 15개`(PRD 10절의 확인하지 않은 것) |
+| 3-9 | 폭 360px에서 순위표가 가로 스크롤 없이 보임(2026-10-09 신 교수 추가) |
 
 - [ ] Step 2: 지적한 항목을 고치고 그 항목만 다시 확인을 요청함. 고친 파일을 커밋함. 3-8이 실패하면 고치기 전에 사용자와 대응을 정함(PRD 7절은 저장 실패 시 게임을 계속한다고만 정함)
 
