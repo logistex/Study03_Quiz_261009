@@ -45,12 +45,18 @@ function todayString(date = new Date()) {
 }
 
 function parseLeaderboard(text) {
+  let board;
   try {
-    const board = JSON.parse(text);
-    return board && typeof board === "object" && !Array.isArray(board) ? board : {};
+    board = JSON.parse(text);
   } catch (e) {
     return {};
   }
+  if (!board || typeof board !== "object" || Array.isArray(board)) return {};
+  for (const key of Object.keys(board)) {
+    const list = Array.isArray(board[key]) ? board[key] : [];
+    board[key] = list.filter(entry => entry && typeof entry.date === "string" && typeof entry.score === "number");
+  }
+  return board;
 }
 
 function loadLeaderboard() {
@@ -318,6 +324,10 @@ function runSelfTests() {
   });
   check("저장값 해석: 없거나 깨지거나 객체가 아니면 빈 순위표", () =>
     [null, "{", "[]", "\"x\"", "null"].every(t => JSON.stringify(parseLeaderboard(t)) === "{}"));
+  check("저장값 해석: 표가 배열이 아니거나 기록이 깨졌으면 걸러 냄", () =>
+    JSON.stringify(parseLeaderboard('{"speed|한국사": 5}')) === '{"speed|한국사":[]}' &&
+    JSON.stringify(parseLeaderboard('{"speed|한국사": [null, {"date": "2026-10-09", "score": 3}]}')) ===
+      '{"speed|한국사":[{"date":"2026-10-09","score":3}]}');
   check("날짜: 로컬 날짜, 두 자리 채움", () =>
     todayString(new Date(2026, 9, 9, 8, 30)) === "2026-10-09" && todayString(new Date(2026, 0, 5)) === "2026-01-05");
   check("순위표: 11개를 넣어도 10개만 남음", () => {
