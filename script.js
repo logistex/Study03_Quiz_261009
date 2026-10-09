@@ -228,6 +228,38 @@ function retryWrong() {
   startRound(state.wrong);
 }
 
+function renderLeaderboard() {
+  const board = loadLeaderboard();
+  const container = document.getElementById("leaderboard-tables");
+  container.replaceChildren();
+  for (const mode of ["speed", "hint"]) {
+    for (const category of CATEGORIES) {
+      const title = document.createElement("h3");
+      title.textContent = `${MODES[mode].name} ${category}`;
+      container.appendChild(title);
+      const list = board[`${mode}|${category}`] || [];
+      if (list.length === 0) {
+        const empty = document.createElement("p");
+        empty.textContent = "기록 없음";
+        container.appendChild(empty);
+        continue;
+      }
+      const table = document.createElement("table");
+      const head = table.insertRow();
+      for (const label of ["순위", "날짜", "점수"]) {
+        const th = document.createElement("th");
+        th.textContent = label;
+        head.appendChild(th);
+      }
+      list.forEach((entry, i) => {
+        const row = table.insertRow();
+        for (const value of [i + 1, entry.date, entry.score]) row.insertCell().textContent = value;
+      });
+      container.appendChild(table);
+    }
+  }
+}
+
 function init() {
   document.querySelectorAll("[data-category]").forEach(button => {
     button.addEventListener("click", () => startCategory(button.dataset.category));
@@ -245,6 +277,11 @@ function init() {
     stopTimer();
     showScreen("start");
   });
+  document.getElementById("leaderboard-button").addEventListener("click", () => {
+    renderLeaderboard();
+    showScreen("leaderboard");
+  });
+  document.getElementById("leaderboard-home-button").addEventListener("click", () => showScreen("start"));
   showScreen("start");
 }
 
