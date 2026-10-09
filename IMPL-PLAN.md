@@ -351,7 +351,7 @@ check("힌트: 정답을 빼고 서로 다른 오답 2개", () => {
   - `recordScore(mode: string, category: string, score: number, date = todayString()) -> { saved: boolean, rank: number | null }`: 키 `` `${mode}|${category}` ``의 표에 `insertScore()`를 적용하고 `setItem`으로 저장함. `setItem`이 예외를 내면 `{ saved: false, rank: null }`. `date` 인자는 Task 12의 콘솔 확인에 씀
   - `showResult()`: 첫 판이고(`state.firstScore === null`) `MODES[state.mode].leaderboard`면 `recordScore()`를 부르고 "이번 점수는 N위", "상위 10위 밖", "순위표를 저장할 수 없음" 중 하나를 보여 줌
 
-- [ ] Step 1: `runSelfTests()`에 점검 5개를 더함
+- [x] Step 1: `runSelfTests()`에 점검 5개를 더함
 
 ```js
 check("저장값 해석: 없거나 깨지거나 객체가 아니면 빈 순위표", () =>
@@ -375,10 +375,10 @@ check("순위표: 10위 밖이면 rank가 null", () => {
 });
 ```
 
-- [ ] Step 2: `node script.js`. 기대 출력: 새 점검 5개가 FAIL, 끝 줄 `점검 실패: 5개`
-- [ ] Step 3: 위 내용을 씀(PRD 7절, 4.2항)
-- [ ] Step 4: `node script.js`. 기대 출력: 끝 줄 `점검 통과: 15개`
-- [ ] Step 5: `script.js`, `index.html`을 커밋함
+- [x] Step 2: `node script.js`. 기대 출력: 새 점검 5개가 FAIL, 끝 줄 `점검 실패: 5개`
+- [x] Step 3: 위 내용을 씀(PRD 7절, 4.2항)
+- [x] Step 4: `node script.js`. 기대 출력: 끝 줄 `점검 통과: 15개`
+- [x] Step 5: `script.js`, `index.html`을 커밋함
 
 ### Task 11: 순위표 화면
 
@@ -390,17 +390,17 @@ check("순위표: 10위 밖이면 rank가 null", () => {
   - 시작 화면의 [순위표] 버튼, `screen-leaderboard` 섹션, 순위표 화면의 [처음으로]
   - `renderLeaderboard() -> void`: 모드 `speed`, `hint` 순, 카테고리는 `CATEGORIES` 순으로 표 8개를 그림. 표 제목은 `MODES[mode].name`과 카테고리 이름, 행은 순위, 날짜, 점수. 기록이 없는 표는 "기록 없음"
 
-- [ ] Step 1: 위 내용을 씀(PRD 4.2항). 표 그리기는 화면 작업이라 점검 함수로 보지 않고 Task 12의 3-1, 3-3~3-5 항목으로 봄
-- [ ] Step 2: `node script.js`. 기대 출력: 끝 줄 `점검 통과: 15개`
-- [ ] Step 3: `index.html`, `script.js`를 커밋함
+- [x] Step 1: 위 내용을 씀(PRD 4.2항). 표 그리기는 화면 작업이라 점검 함수로 보지 않고 Task 12의 3-1, 3-3~3-5 항목으로 봄
+- [x] Step 2: `node script.js`. 기대 출력: 끝 줄 `점검 통과: 15개`
+- [x] Step 3: `index.html`, `script.js`를 커밋함
 
 ### Task 12: 3단계 사용자 확인
 
-- [ ] Step 1: 아래 항목을 사용자에게 드리고 답을 기다림. 콘솔은 크롬에서 `Cmd+Option+J`로 염
+- [x] Step 1: 아래 항목을 사용자에게 드리고 답을 기다림. 콘솔은 크롬에서 `Cmd+Option+J`로 염
 
 | 번호 | 확인할 것(PRD 8.3항과 검토 초점) |
 |---|---|
-| 3-0 | `index.html?test`로 열면 콘솔 끝 줄이 `점검 통과: 15개` |
+| 3-0 | `index.html?test`로 열면 콘솔 끝 줄이 `점검 통과: 16개` |
 | 3-1 | 스피드, 힌트 모드로 한 판씩 풀면 결과 화면에 순위가 나오고, 새로고침 뒤 [순위표]에 두 기록이 남아 있음. 날짜가 오늘(한국 시각)임(검토 초점 4) |
 | 3-2 | 연습 모드로 한 판 풀면 순위표에 기록되지 않음 |
 | 3-3 | 콘솔에 `for (let i = 0; i <= 10; i++) recordScore("speed", "한국사", i);`(11개 기록)를 넣고 새로고침하면 스피드 한국사 표에 10점부터 1점까지 10개만 남음 |
@@ -408,9 +408,10 @@ check("순위표: 10위 밖이면 rank가 null", () => {
 | 3-5 | 콘솔에 `localStorage.setItem("quiz-leaderboard", "{")`를 넣고 새로고침하면 순위표가 빈 표로 열리고, 스피드 한 판을 풀면 기록이 저장됨(검토 초점 3) |
 | 3-6 | 콘솔에 `Storage.prototype.setItem = () => { throw new Error("blocked"); };`를 넣고 스피드 한 판을 풀면 "순위표를 저장할 수 없음"이 나오고 [처음으로]가 동작함. 새로고침하면 원래대로 돌아옴 |
 | 3-7 | 크롬에서 file://로 연 index.html의 기록이 새로고침 뒤에도 남음 |
-| 3-8 | 사파리에서 file://로 연 index.html의 기록이 새로고침 뒤에도 남고, `index.html?test`의 콘솔 끝 줄이 `점검 통과: 15개`(PRD 10절의 확인하지 않은 것) |
+| 3-8 | 사파리에서 file://로 연 index.html의 기록이 새로고침 뒤에도 남고, `index.html?test`의 콘솔 끝 줄이 `점검 통과: 16개`(PRD 10절의 확인하지 않은 것) |
+| 3-9 | 폭 360px에서 순위표가 가로 스크롤 없이 보임(2026-10-09 사용자 추가) |
 
-- [ ] Step 2: 지적한 항목을 고치고 그 항목만 다시 확인을 요청함. 고친 파일을 커밋함. 3-8이 실패하면 고치기 전에 사용자와 대응을 정함(PRD 7절은 저장 실패 시 게임을 계속한다고만 정함)
+- [x] Step 2: 지적한 항목을 고치고 그 항목만 다시 확인을 요청함. 고친 파일을 커밋함. 3-8이 실패하면 고치기 전에 사용자와 대응을 정함(PRD 7절은 저장 실패 시 게임을 계속한다고만 정함)
 
 ---
 

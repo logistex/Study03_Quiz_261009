@@ -12,6 +12,9 @@ const state = {
   answered: false, firstScore: null, timerId: null,
 };
 
+const LEADERBOARD_KEY = "quiz-leaderboard";
+const CATEGORIES = ["한국사", "세계지리", "과학", "예술과 문화"];
+
 function showScreen(name) {
   document.querySelectorAll("main > section").forEach(section => {
     section.hidden = section.id !== `screen-${name}`;
@@ -34,6 +37,54 @@ function scoreFor(correct, hintUsed, mode) {
 
 function formatScore(score, total) {
   return `${score}/${total}`;
+}
+
+function todayString(date = new Date()) {
+  const pad = n => String(n).padStart(2, "0");
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+}
+
+function parseLeaderboard(text) {
+  let board;
+  try {
+    board = JSON.parse(text);
+  } catch (e) {
+    return {};
+  }
+  if (!board || typeof board !== "object" || Array.isArray(board)) return {};
+  for (const key of Object.keys(board)) {
+    const list = Array.isArray(board[key]) ? board[key] : [];
+    board[key] = list.filter(entry => entry && typeof entry.date === "string" && typeof entry.score === "number");
+  }
+  return board;
+}
+
+function loadLeaderboard() {
+  try {
+    return parseLeaderboard(localStorage.getItem(LEADERBOARD_KEY));
+  } catch (e) {
+    return {};
+  }
+}
+
+function insertScore(list, entry) {
+  let pos = 0;
+  while (pos < list.length && list[pos].score >= entry.score) pos++;
+  const next = [...list.slice(0, pos), entry, ...list.slice(pos)].slice(0, 10);
+  return { list: next, rank: pos < 10 ? pos + 1 : null };
+}
+
+function recordScore(mode, category, score, date = todayString()) {
+  const board = loadLeaderboard();
+  const key = `${mode}|${category}`;
+  const result = insertScore(board[key] || [], { date, score });
+  board[key] = result.list;
+  try {
+    localStorage.setItem(LEADERBOARD_KEY, JSON.stringify(board));
+  } catch (e) {
+    return { saved: false, rank: null };
+  }
+  return { saved: true, rank: result.rank };
 }
 
 function startCategory(category) {
@@ -164,6 +215,14 @@ function showResult() {
     document.getElementById("result-score").textContent = `다시 푼 점수 ${score}`;
   }
   document.getElementById("result-note").hidden = MODES[state.mode].leaderboard;
+  const rank = document.getElementById("result-rank");
+  rank.hidden = !(state.firstScore === null && MODES[state.mode].leaderboard);
+  if (!rank.hidden) {
+    const recorded = recordScore(state.mode, state.category, state.score);
+    if (!recorded.saved) rank.textContent = "순위표를 저장할 수 없음";
+    else if (recorded.rank === null) rank.textContent = "상위 10위 밖";
+    else rank.textContent = `이번 점수는 ${recorded.rank}위`;
+  }
   document.getElementById("retry-button").hidden = !(MODES[state.mode].retry && state.wrong.length > 0);
   showScreen("result");
 }
@@ -173,6 +232,38 @@ function retryWrong() {
     state.firstScore = { score: state.score, total: state.questions.length };
   }
   startRound(state.wrong);
+}
+
+function renderLeaderboard() {
+  const board = loadLeaderboard();
+  const container = document.getElementById("leaderboard-tables");
+  container.replaceChildren();
+  for (const mode of ["speed", "hint"]) {
+    for (const category of CATEGORIES) {
+      const title = document.createElement("h3");
+      title.textContent = `${MODES[mode].name} ${category}`;
+      container.appendChild(title);
+      const list = board[`${mode}|${category}`] || [];
+      if (list.length === 0) {
+        const empty = document.createElement("p");
+        empty.textContent = "기록 없음";
+        container.appendChild(empty);
+        continue;
+      }
+      const table = document.createElement("table");
+      const head = table.insertRow();
+      for (const label of ["순위", "날짜", "점수"]) {
+        const th = document.createElement("th");
+        th.textContent = label;
+        head.appendChild(th);
+      }
+      list.forEach((entry, i) => {
+        const row = table.insertRow();
+        for (const value of [i + 1, entry.date, entry.score]) row.insertCell().textContent = value;
+      });
+      container.appendChild(table);
+    }
+  }
 }
 
 function init() {
@@ -192,6 +283,11 @@ function init() {
     stopTimer();
     showScreen("start");
   });
+  document.getElementById("leaderboard-button").addEventListener("click", () => {
+    renderLeaderboard();
+    showScreen("leaderboard");
+  });
+  document.getElementById("leaderboard-home-button").addEventListener("click", () => showScreen("start"));
   showScreen("start");
 }
 
@@ -225,6 +321,29 @@ function runSelfTests() {
     const picked = pickHintChoices(["가", "나", "다", "라"], "나");
     return picked.length === 2 && !picked.includes("나") && new Set(picked).size === 2 &&
       picked.every(c => ["가", "다", "라"].includes(c));
+  });
+  check("저장값 해석: 없거나 깨지거나 객체가 아니면 빈 순위표", () =>
+    [null, "{", "[]", "\"x\"", "null"].every(t => JSON.stringify(parseLeaderboard(t)) === "{}"));
+  check("저장값 해석: 표가 배열이 아니거나 기록이 깨졌으면 걸러 냄", () =>
+    JSON.stringify(parseLeaderboard('{"speed|한국사": 5}')) === '{"speed|한국사":[]}' &&
+    JSON.stringify(parseLeaderboard('{"speed|한국사": [null, {"date": "2026-10-09", "score": 3}]}')) ===
+      '{"speed|한국사":[{"date":"2026-10-09","score":3}]}');
+  check("날짜: 로컬 날짜, 두 자리 채움", () =>
+    todayString(new Date(2026, 9, 9, 8, 30)) === "2026-10-09" && todayString(new Date(2026, 0, 5)) === "2026-01-05");
+  check("순위표: 11개를 넣어도 10개만 남음", () => {
+    let list = [];
+    for (let i = 0; i <= 10; i++) list = insertScore(list, { date: "2026-10-09", score: i }).list;
+    return list.length === 10 && list[0].score === 10 && list[9].score === 1;
+  });
+  check("순위표: 동점이면 먼저 기록한 점수가 위", () => {
+    let list = insertScore([], { date: "2026-10-01", score: 5 }).list;
+    const r = insertScore(list, { date: "2026-10-02", score: 5 });
+    return r.rank === 2 && r.list[0].date === "2026-10-01";
+  });
+  check("순위표: 10위 밖이면 rank가 null", () => {
+    const full = Array.from({ length: 10 }, () => ({ date: "2026-10-09", score: 9 }));
+    const r = insertScore(full, { date: "2026-10-09", score: 3 });
+    return r.rank === null && r.list.length === 10;
   });
   // 태스크마다 여기에 check(...)를 더함
   const failed = results.filter(ok => !ok).length;

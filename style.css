@@ -78,3 +78,21 @@ button:disabled {
   font-size: 2em;
   font-weight: bold;
 }
+
+#leaderboard-tables table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  margin-bottom: 16px;
+}
+
+#leaderboard-tables th,
+#leaderboard-tables td {
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+#leaderboard-tables th {
+  background: #eee;
+}
