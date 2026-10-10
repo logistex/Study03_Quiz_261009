@@ -25,7 +25,7 @@
   - 클로드: `node script.js` 한 줄로 점검 함수를 실행함. 기대 출력의 끝 줄은 `점검 통과: N개`. 문항을 고친 태스크는 Task 1 Step 5의 Node 문항 검사도 실행함
   - 사용자: `index.html?test`로 열어 브라우저 콘솔에서 같은 점검 결과를 봄
   - 사용자: 단계 끝 태스크(Task 4, 9, 12)의 브라우저 확인 항목. 콘솔 명령이 필요한 항목은 명령을 적어 둠
-- 점검 함수는 화면 없이 확인할 수 있는 로직(섞기, 채점, 점수 표기, 힌트 보기 고르기, 순위표 정렬, 저장값 해석, 날짜)만 검사함. 화면, 타이머, 저장은 사용자의 브라우저 확인으로 봄
+- 점검 함수는 화면 없이 확인할 수 있는 로직(섞기, 채점, 점수 표기, 힌트 보기 고르기, 순위표 정렬, 저장값 해석, 날짜)과 문항의 출처 개수만 검사함. 화면, 타이머, 저장은 사용자의 브라우저 확인으로 봄
 - 점검을 더하는 태스크는 점검을 먼저 쓰고 `node script.js`가 FAIL을 내는지 본 뒤 구현함
 - 태스크마다 마지막에 그 태스크에서 바꾼 파일을 커밋함. 메시지는 `feat: Task N <태스크 제목>`(git 저장소는 2026-10-09에 만듦, 아직 커밋 없음)
 - 화면 문구는 PRD 4.2항의 문구를 그대로 씀: "순위표에 기록되지 않음", "상위 10위 밖", "순위표를 저장할 수 없음", [처음으로], [다음], [결과 보기], [힌트], [틀린 문제 다시 풀기], [순위표]
@@ -89,7 +89,8 @@ for (const q of ctx.Q) {
   if (!cats.includes(q.category)) errs.push(`${q.id}: 카테고리 ${q.category}`);
   if (q.choices.length !== 4 || new Set(q.choices).size !== 4) errs.push(`${q.id}: 보기 4개가 서로 다르지 않음`);
   if (q.choices.filter(c => c === q.answer).length !== 1) errs.push(`${q.id}: 정답이 보기에 정확히 1번 나오지 않음`);
-  if (!q.explanation?.trim() || !q.source?.trim()) errs.push(`${q.id}: 해설 또는 출처가 비어 있음`);
+  if (!q.explanation?.trim()) errs.push(`${q.id}: 해설이 비어 있음`);
+  if (!Array.isArray(q.source) || q.source.length !== 2 || q.source.some(s => typeof s !== "string" || !s.trim())) errs.push(`${q.id}: 출처가 2개가 아니거나 비어 있음`);
 }
 console.log(errs.length ? errs.join("\n") : "문항 검사 통과: 40문항");
 process.exitCode = errs.length ? 1 : 0;

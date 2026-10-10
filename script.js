@@ -192,7 +192,7 @@ function revealAnswer(selected) {
   if (selected === null) result = "시간 초과";
   document.getElementById("feedback-result").textContent = result;
   document.getElementById("feedback-explanation").textContent = q.explanation;
-  document.getElementById("feedback-source").textContent = `출처: ${q.source}`;
+  document.getElementById("feedback-source").textContent = `출처: ${q.source.join(" / ")}`;
   document.getElementById("current-score").textContent = `점수 ${formatScore(state.score, state.questions.length)}`;
   const isLast = state.index === state.questions.length - 1;
   document.getElementById("next-button").textContent = isLast ? "결과 보기" : "다음";
@@ -345,6 +345,9 @@ function runSelfTests() {
     const r = insertScore(full, { date: "2026-10-09", score: 3 });
     return r.rank === null && r.list.length === 10;
   });
+  check("문항: 모든 문항의 출처가 2개(CLAUDE.md 규칙 4)", () =>
+    QUESTIONS.every(q => Array.isArray(q.source) && q.source.length === 2 &&
+      q.source.every(s => typeof s === "string" && s.trim() !== "")));
   // 태스크마다 여기에 check(...)를 더함
   const failed = results.filter(ok => !ok).length;
   console.log(failed ? `점검 실패: ${failed}개` : `점검 통과: ${results.length}개`);
@@ -352,6 +355,7 @@ function runSelfTests() {
 }
 
 if (typeof document === "undefined") {
+  require("vm").runInThisContext(require("fs").readFileSync(require("path").join(__dirname, "questions.js"), "utf8"));
   process.exitCode = runSelfTests() ? 0 : 1;   // 클로드: node script.js
 } else {
   init();

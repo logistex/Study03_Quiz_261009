@@ -9,7 +9,10 @@ const QUESTIONS = [
     choices: ["세종", "태종", "세조", "성종"],
     answer: "세종",
     explanation: "세종이 1443년(세종 25)에 훈민정음을 창제하고 1446년에 반포함.",
-    source: "한국민족문화대백과사전 「훈민정음」, https://encykorea.aks.ac.kr/Article/E0065806, 2026-10-09",
+    source: [
+      "한국민족문화대백과사전 「훈민정음」, https://encykorea.aks.ac.kr/Article/E0065806, 2026-10-09",
+      "우리역사넷 「세종」, https://contents.history.go.kr/mobile/kc/view.do?levelId=kc_n305800&code=kc_age_30, 2026-10-10",
+    ],
   },
   {
     id: "kh-02",
@@ -18,7 +21,10 @@ const QUESTIONS = [
     choices: ["왕건", "견훤", "이성계", "경순왕"],
     answer: "왕건",
     explanation: "송악의 호족 왕건이 918년 궁예를 몰아내고 고려를 세웠고, 936년 후삼국을 통일함.",
-    source: "한국민족문화대백과사전 「고려」, https://encykorea.aks.ac.kr/Article/E0003424, 2026-10-09",
+    source: [
+      "한국민족문화대백과사전 「고려」, https://encykorea.aks.ac.kr/Article/E0003424, 2026-10-09",
+      "우리역사넷 「태조왕건」, https://contents.history.go.kr/mobile/kc/view.do?levelId=kc_n206200&code=kc_age_20, 2026-10-10",
+    ],
   },
   {
     id: "kh-03",
@@ -26,8 +32,11 @@ const QUESTIONS = [
     question: "1592년 학익진으로 한산도 대첩을 승리로 이끈 전라좌수사는?",
     choices: ["이순신", "권율", "김시민", "곽재우"],
     answer: "이순신",
-    explanation: "전라좌수사 이순신이 학익진으로 일본 수군 주력을 격파함. 행주 대첩은 권율, 진주 대첩은 김시민이 이끔.",
-    source: "한국민족문화대백과사전 「한산도대첩」, https://encykorea.aks.ac.kr/Article/E0061676, 2026-10-09",
+    explanation: "전라좌수사 이순신이 학익진으로 일본 수군 주력을 격파함.",
+    source: [
+      "한국민족문화대백과사전 「한산도대첩」, https://encykorea.aks.ac.kr/Article/E0061676, 2026-10-09",
+      "우리역사넷 「이순신과 한산도 대첩」, https://contents.history.go.kr/mobile/hm/view.do?levelId=hm_079_0040, 2026-10-10",
+    ],
   },
   {
     id: "kh-04",
@@ -36,7 +45,10 @@ const QUESTIONS = [
     choices: ["1919년", "1910년", "1926년", "1945년"],
     answer: "1919년",
     explanation: "1919년 3월 1일을 기해 전국에서 독립만세운동이 일어남.",
-    source: "한국민족문화대백과사전 「3·1운동」, https://encykorea.aks.ac.kr/Article/E0026772, 2026-10-09",
+    source: [
+      "한국민족문화대백과사전 「3·1운동」, https://encykorea.aks.ac.kr/Article/E0026772, 2026-10-09",
+      "우리역사넷 「3·1 운동」, https://contents.history.go.kr/mobile/kc/view.do?levelId=kc_i400200&code=kc_age_40, 2026-10-10",
+    ],
   },
   {
     id: "kh-05",
@@ -45,7 +57,10 @@ const QUESTIONS = [
     choices: ["문무왕", "태종 무열왕", "진흥왕", "법흥왕"],
     answer: "문무왕",
     explanation: "문무왕 때인 676년 기벌포 전투를 끝으로 나당 전쟁이 마무리되어 삼국 통일이 완성됨.",
-    source: "한국민족문화대백과사전 「문무왕」, https://encykorea.aks.ac.kr/Article/E0019473, 2026-10-09",
+    source: [
+      "한국민족문화대백과사전 「문무왕」, https://encykorea.aks.ac.kr/Article/E0019473, 2026-10-09",
+      "우리역사넷 「문무왕」, https://contents.history.go.kr/mobile/kc/view.do?levelId=kc_n101010&code=kc_age_10, 2026-10-10",
+    ],
   },
   {
     id: "kh-06",
@@ -54,16 +69,22 @@ const QUESTIONS = [
     choices: ["상하이", "베이징", "도쿄", "블라디보스토크"],
     answer: "상하이",
     explanation: "3·1 운동 뒤인 1919년 4월 11일 중국 상하이에서 대한민국 임시정부가 수립됨.",
-    source: "한국민족문화대백과사전 「대한민국임시정부수립기념일」, https://encykorea.aks.ac.kr/Article/E0080590, 2026-10-09",
+    source: [
+      "한국민족문화대백과사전 「대한민국임시정부수립기념일」, https://encykorea.aks.ac.kr/Article/E0080590, 2026-10-09",
+      "우리역사넷 「대한민국 임시정부」, https://contents.history.go.kr/mobile/kc/view.do?levelId=kc_o400800&code=kc_age_40, 2026-10-10",
+    ],
   },
   {
     id: "kh-07",
     category: "한국사",
-    question: "538년 성왕이 천도한 뒤 멸망 때까지 백제의 도읍이었던 곳은?",
+    question: "성왕이 천도한 백제의 도읍은?",
     choices: ["사비", "웅진", "한성", "국내성"],
     answer: "사비",
-    explanation: "성왕이 538년 웅진에서 사비(지금의 부여)로 천도했고, 660년 멸망 때까지 도읍이었음.",
-    source: "한국민족문화대백과사전 「사비천도」, https://encykorea.aks.ac.kr/Article/E0071959, 2026-10-09",
+    explanation: "성왕이 웅진에서 사비(지금의 부여)로 천도함.",
+    source: [
+      "한국민족문화대백과사전 「사비천도」, https://encykorea.aks.ac.kr/Article/E0071959, 2026-10-09",
+      "우리역사넷 「부소산성」, https://contents.history.go.kr/mobile/kc/view.do?levelId=kc_r100410, 2026-10-10",
+    ],
   },
   {
     id: "kh-08",
@@ -72,7 +93,10 @@ const QUESTIONS = [
     choices: ["전봉준", "최제우", "최시형", "홍경래"],
     answer: "전봉준",
     explanation: "고부 접주 전봉준은 몸이 왜소해 녹두라 불렸고 뒤에 녹두장군이란 별명을 얻음.",
-    source: "한국민족문화대백과사전 「전봉준」, https://encykorea.aks.ac.kr/Article/E0049437, 2026-10-09",
+    source: [
+      "한국민족문화대백과사전 「전봉준」, https://encykorea.aks.ac.kr/Article/E0049437, 2026-10-09",
+      "우리역사넷 「전봉준, 동학 농민 운동을 이끌다」, https://contents.history.go.kr/mobile/eh/view.do?levelId=eh_n0660_0010, 2026-10-10",
+    ],
   },
   {
     id: "kh-09",
@@ -81,7 +105,10 @@ const QUESTIONS = [
     choices: ["김옥균", "전봉준", "최익현", "흥선대원군"],
     answer: "김옥균",
     explanation: "김옥균 등 급진개화파가 1884년 갑신정변을 일으켰으나 청군의 개입으로 실패함.",
-    source: "한국민족문화대백과사전 「갑신정변」, https://encykorea.aks.ac.kr/Article/E0000922, 2026-10-09",
+    source: [
+      "한국민족문화대백과사전 「갑신정변」, https://encykorea.aks.ac.kr/Article/E0000922, 2026-10-09",
+      "우리역사넷 「김옥균, 갑신정변을 일으키다」, https://contents.history.go.kr/mobile/eh/view.do?levelId=eh_n0650_0010&code=eh_age_40, 2026-10-10",
+    ],
   },
   {
     id: "kh-10",
@@ -90,7 +117,10 @@ const QUESTIONS = [
     choices: ["정약용", "박지원", "유형원", "이익"],
     answer: "정약용",
     explanation: "정약용이 도르래를 이용한 거중기를 설계했고, 정조 때 수원 화성 축성에 쓰임.",
-    source: "한국민족문화대백과사전 「거중기」, https://encykorea.aks.ac.kr/Article/E0001891, 2026-10-09",
+    source: [
+      "한국민족문화대백과사전 「거중기」, https://encykorea.aks.ac.kr/Article/E0001891, 2026-10-09",
+      "우리역사넷 「정약용의 거중기」, https://contents.history.go.kr/mobile/hm/view.do?levelId=hm_112_0050, 2026-10-10",
+    ],
   },
 
   // 세계지리
@@ -101,7 +131,10 @@ const QUESTIONS = [
     choices: ["캔버라", "시드니", "멜버른", "퍼스"],
     answer: "캔버라",
     explanation: "시드니와 멜버른 사이에 수도로 새로 세운 도시가 캔버라임.",
-    source: "Britannica \"What is the capital of Australia?\", https://www.britannica.com/question/What-is-the-capital-of-Australia, 2026-10-09",
+    source: [
+      "Britannica \"What is the capital of Australia?\", https://www.britannica.com/question/What-is-the-capital-of-Australia, 2026-10-09",
+      "EBSCO Research Starters \"Canberra, Australia\", https://www.ebsco.com/research-starters/geography-and-cartography/canberra-australia/, 2026-10-10",
+    ],
   },
   {
     id: "wg-02",
@@ -110,7 +143,10 @@ const QUESTIONS = [
     choices: ["오타와", "토론토", "밴쿠버", "몬트리올"],
     answer: "오타와",
     explanation: "1857년 빅토리아 여왕이 오타와를 수도로 골랐고, 1867년 캐나다 연방의 수도가 됨.",
-    source: "Britannica \"Ottawa\", https://www.britannica.com/place/Ottawa, 2026-10-09",
+    source: [
+      "Britannica \"Ottawa\", https://www.britannica.com/place/Ottawa, 2026-10-09",
+      "Parks Canada \"Canada's Capital National Historic Event\", https://www.pc.gc.ca/apps/dfhd/page_nhs_eng.aspx?id=1578, 2026-10-10",
+    ],
   },
   {
     id: "wg-03",
@@ -119,7 +155,10 @@ const QUESTIONS = [
     choices: ["에베레스트산", "K2", "칸첸중가산", "킬리만자로산"],
     answer: "에베레스트산",
     explanation: "중국과 네팔이 2020년에 공동으로 발표한 에베레스트산의 높이는 8,848.86m임.",
-    source: "Britannica \"Mount Everest\", https://www.britannica.com/place/Mount-Everest, 2026-10-09",
+    source: [
+      "Britannica \"Mount Everest\", https://www.britannica.com/place/Mount-Everest, 2026-10-09",
+      "Ministry of Foreign Affairs of the People's Republic of China \"President Xi Jinping and Nepalese President Bidya Devi Bhandari Exchange Letters to Jointly Announce New Height of Mount Qomolangma\", https://www.fmprc.gov.cn/eng/gjhdq_665435/2675_665437/2752_663508/2754_663512/202406/t20240607_11411566.html, 2026-10-10",
+    ],
   },
   {
     id: "wg-04",
@@ -128,7 +167,10 @@ const QUESTIONS = [
     choices: ["러시아", "캐나다", "중국", "미국"],
     answer: "러시아",
     explanation: "국토 총면적은 러시아가 1위, 캐나다가 2위임.",
-    source: "Britannica \"List of the world's largest countries and dependencies by area\", https://www.britannica.com/topic/list-of-the-total-areas-of-the-worlds-countries-dependencies-and-territories-2130540, 2026-10-09",
+    source: [
+      "Britannica \"List of the world's largest countries and dependencies by area\", https://www.britannica.com/topic/list-of-the-total-areas-of-the-worlds-countries-dependencies-and-territories-2130540, 2026-10-09",
+      "Statistics Canada \"International perspective\" (Canada Year Book 2012), https://www150.statcan.gc.ca/n1/pub/11-402-x/2012000/chap/geo/geo01-eng.htm, 2026-10-10",
+    ],
   },
   {
     id: "wg-05",
@@ -137,7 +179,10 @@ const QUESTIONS = [
     choices: ["아프리카", "아시아", "남아메리카", "오세아니아"],
     answer: "아프리카",
     explanation: "사하라 사막은 북아프리카 대부분을 덮고 있음.",
-    source: "Britannica \"Sahara summary\", https://www.britannica.com/summary/Sahara-desert-Africa, 2026-10-09",
+    source: [
+      "Britannica \"Sahara summary\", https://www.britannica.com/summary/Sahara-desert-Africa, 2026-10-09",
+      "EBSCO Research Starters \"North Africa\", https://www.ebsco.com/research-starters/history/north-africa, 2026-10-10",
+    ],
   },
   {
     id: "wg-06",
@@ -146,7 +191,10 @@ const QUESTIONS = [
     choices: ["남아메리카", "북아메리카", "유럽", "아프리카"],
     answer: "남아메리카",
     explanation: "안데스산맥은 베네수엘라에서 칠레, 아르헨티나까지 남아메리카 서부를 따라 이어짐.",
-    source: "Britannica \"Andes Mountains\", https://www.britannica.com/place/Andes-Mountains, 2026-10-09",
+    source: [
+      "Britannica \"Andes Mountains\", https://www.britannica.com/place/Andes-Mountains, 2026-10-09",
+      "NASA \"Chilean Andes\", https://www.nasa.gov/image-article/chilean-andes/, 2026-10-10",
+    ],
   },
   {
     id: "wg-07",
@@ -155,7 +203,10 @@ const QUESTIONS = [
     choices: ["지중해", "홍해", "아라비아해", "흑해"],
     answer: "지중해",
     explanation: "나일강은 이집트 북부에서 삼각주를 이루며 지중해로 흘러듦.",
-    source: "Britannica \"Nile River\", https://www.britannica.com/place/Nile-River, 2026-10-09",
+    source: [
+      "Britannica \"Nile River\", https://www.britannica.com/place/Nile-River, 2026-10-09",
+      "National Geographic Kids \"Egypt Country Profile\", https://kids.nationalgeographic.com/geography/countries/article/egypt, 2026-10-10",
+    ],
   },
   {
     id: "wg-08",
@@ -164,7 +215,10 @@ const QUESTIONS = [
     choices: ["포르투갈어", "스페인어", "영어", "프랑스어"],
     answer: "포르투갈어",
     explanation: "포르투갈의 식민지였던 브라질은 포르투갈어를 공용어로 씀.",
-    source: "Britannica \"Brazil\", https://www.britannica.com/place/Brazil, 2026-10-09",
+    source: [
+      "Britannica \"Brazil\", https://www.britannica.com/place/Brazil, 2026-10-09",
+      "National Geographic Kids \"Brazil Country Profile\", https://kids.nationalgeographic.com/geography/countries/article/brazil, 2026-10-10",
+    ],
   },
   {
     id: "wg-09",
@@ -172,8 +226,11 @@ const QUESTIONS = [
     question: "1884년 국제 자오선 회의에서 경도 0도의 기준이 된 천문대가 있는 영국의 지역은?",
     choices: ["그리니치", "옥스퍼드", "에든버러", "케임브리지"],
     answer: "그리니치",
-    explanation: "1884년 회의에서 런던 그리니치 왕립 천문대의 자오환을 지나는 선을 경도 0도로 정함.",
-    source: "Royal Museums Greenwich \"Stand on the Prime Meridian\", https://www.rmg.co.uk/royal-observatory/attractions/stand-on-prime-meridian-line, 2026-10-09",
+    explanation: "1884년 회의에서 그리니치 왕립 천문대의 자오환을 지나는 선을 경도 0도로 정함.",
+    source: [
+      "Royal Museums Greenwich \"Stand on the Prime Meridian\", https://www.rmg.co.uk/royal-observatory/attractions/stand-on-prime-meridian-line, 2026-10-09",
+      "Science Museum Group Journal \"A model instrument\", https://journal.sciencemuseum.ac.uk/article/a-model-instrument/, 2026-10-10",
+    ],
   },
   {
     id: "wg-10",
@@ -182,7 +239,10 @@ const QUESTIONS = [
     choices: ["앙카라", "이스탄불", "이즈미르", "안탈리아"],
     answer: "앙카라",
     explanation: "앙카라는 1923년 튀르키예 공화국의 수도가 됨. 이스탄불은 가장 큰 도시이지만 수도가 아님.",
-    source: "Britannica \"Ankara, capital of Turkey\", https://www.britannica.com/summary/Ankara, 2026-10-09",
+    source: [
+      "Britannica \"Ankara, capital of Turkey\", https://www.britannica.com/summary/Ankara, 2026-10-09",
+      "EBSCO Research Starters \"Ankara, Turkey\", https://www.ebsco.com/research-starters/geography-and-cartography/ankara-turkey/, 2026-10-10",
+    ],
   },
 
   // 과학
@@ -193,7 +253,10 @@ const QUESTIONS = [
     choices: ["H2O", "H2O2", "CO2", "O2"],
     answer: "H2O",
     explanation: "물 분자 하나는 수소 원자 2개와 산소 원자 1개로 이루어짐.",
-    source: "Britannica \"Water - Physical properties\", https://www.britannica.com/science/water/Physical-properties, 2026-10-09",
+    source: [
+      "Britannica \"Water - Physical properties\", https://www.britannica.com/science/water/Physical-properties, 2026-10-09",
+      "NIH PMC \"Water Chemistry and Microbiology\" (Comprehensive Analytical Chemistry), https://pmc.ncbi.nlm.nih.gov/articles/PMC7148907/, 2026-10-10",
+    ],
   },
   {
     id: "sc-02",
@@ -201,8 +264,11 @@ const QUESTIONS = [
     question: "태양과의 평균 거리 기준(2026년 현재 태양계 행성 8개 중), 태양에 가장 가까운 행성은?",
     choices: ["수성", "금성", "화성", "지구"],
     answer: "수성",
-    explanation: "수성은 태양에서 평균 약 5,800만km 떨어진, 태양계에서 가장 안쪽 행성임.",
-    source: "NASA Science \"Mercury: Facts\", https://science.nasa.gov/mercury/facts/, 2026-10-09",
+    explanation: "수성은 태양계에서 가장 안쪽 행성임.",
+    source: [
+      "NASA Science \"Mercury: Facts\", https://science.nasa.gov/mercury/facts/, 2026-10-09",
+      "ESA \"What we know\" (BepiColombo), https://sci.esa.int/web/bepicolombo/-/59927-what-we-know, 2026-10-10",
+    ],
   },
   {
     id: "sc-03",
@@ -210,8 +276,11 @@ const QUESTIONS = [
     question: "원소 기호가 Fe인 원소는?",
     choices: ["철", "불소", "납", "금"],
     answer: "철",
-    explanation: "Fe는 철의 라틴어 이름 ferrum에서 온 기호임. 불소는 F, 납은 Pb, 금은 Au.",
-    source: "Britannica \"Iron\", https://www.britannica.com/science/iron-chemical-element, 2026-10-09",
+    explanation: "Fe는 철의 라틴어 이름 ferrum에서 온 기호임.",
+    source: [
+      "Britannica \"Iron\", https://www.britannica.com/science/iron-chemical-element, 2026-10-09",
+      "U.S. Geological Survey \"EarthWord–Ferrous\", https://www.usgs.gov/news/science-snippet/earthword-ferrous, 2026-10-10",
+    ],
   },
   {
     id: "sc-04",
@@ -220,7 +289,10 @@ const QUESTIONS = [
     choices: ["엽록체", "미토콘드리아", "리보솜", "골지체"],
     answer: "엽록체",
     explanation: "엽록체는 엽록소로 빛 에너지를 흡수해 광합성을 하는 세포 소기관임.",
-    source: "Britannica \"What is a chloroplast?\", https://www.britannica.com/question/What-is-a-chloroplast, 2026-10-09",
+    source: [
+      "Britannica \"What is a chloroplast?\", https://www.britannica.com/question/What-is-a-chloroplast, 2026-10-09",
+      "National Geographic Education \"Photosynthesis\", https://education.nationalgeographic.org/resource/photosynthesis/, 2026-10-10",
+    ],
   },
   {
     id: "sc-05",
@@ -229,7 +301,10 @@ const QUESTIONS = [
     choices: ["약 30만 km/s", "약 3만 km/s", "약 300만 km/s", "약 3천 km/s"],
     answer: "약 30만 km/s",
     explanation: "진공에서 빛의 속력은 정의값 299,792,458m/s로, 약 30만 km/s임.",
-    source: "NIST \"SI Units - Length\", https://www.nist.gov/pml/owm/si-units-length, 2026-10-09",
+    source: [
+      "NIST \"SI Units - Length\", https://www.nist.gov/pml/owm/si-units-length, 2026-10-09",
+      "BIPM \"metre\", https://www.bipm.org/en/si-base-units/metre, 2026-10-10",
+    ],
   },
   {
     id: "sc-06",
@@ -238,7 +313,10 @@ const QUESTIONS = [
     choices: ["적혈구", "백혈구", "혈소판", "림프구"],
     answer: "적혈구",
     explanation: "적혈구 속 헤모글로빈이 폐에서 받은 산소를 온몸의 조직으로 나름.",
-    source: "Britannica \"Blood - Red blood cells (erythrocytes)\", https://www.britannica.com/science/blood-biochemistry/Red-blood-cells-erythrocytes, 2026-10-09",
+    source: [
+      "Britannica \"Blood - Red blood cells (erythrocytes)\", https://www.britannica.com/science/blood-biochemistry/Red-blood-cells-erythrocytes, 2026-10-09",
+      "MedlinePlus \"Hemoglobin Test\", https://medlineplus.gov/lab-tests/hemoglobin-test/, 2026-10-10",
+    ],
   },
   {
     id: "sc-07",
@@ -247,7 +325,10 @@ const QUESTIONS = [
     choices: ["아이작 뉴턴", "갈릴레오 갈릴레이", "요하네스 케플러", "알베르트 아인슈타인"],
     answer: "아이작 뉴턴",
     explanation: "뉴턴은 1687년 『프린키피아』에서 운동 법칙과 만유인력 법칙을 제시함.",
-    source: "Britannica \"Principia\", https://www.britannica.com/topic/Principia, 2026-10-09",
+    source: [
+      "Britannica \"Principia\", https://www.britannica.com/topic/Principia, 2026-10-09",
+      "Trinity College Library, Cambridge \"Highlights\", https://www.trin.cam.ac.uk/library/highlights/, 2026-10-10",
+    ],
   },
   {
     id: "sc-08",
@@ -256,7 +337,10 @@ const QUESTIONS = [
     choices: ["수소", "헬륨", "리튬", "탄소"],
     answer: "수소",
     explanation: "수소 원자핵에는 양성자가 1개 있어 원자 번호가 1임.",
-    source: "Britannica \"Hydrogen\", https://www.britannica.com/science/hydrogen, 2026-10-09",
+    source: [
+      "Britannica \"Hydrogen\", https://www.britannica.com/science/hydrogen, 2026-10-09",
+      "Los Alamos National Laboratory \"Hydrogen\", https://www.lanl.gov/science-engineering/periodic-table/element/hydrogen, 2026-10-10",
+    ],
   },
   {
     id: "sc-09",
@@ -264,8 +348,11 @@ const QUESTIONS = [
     question: "1기압에서 순수한 물이 끓는 온도는?",
     choices: ["약 100℃", "약 0℃", "약 37℃", "약 273℃"],
     answer: "약 100℃",
-    explanation: "순수한 물은 1기압에서 약 100℃(373K)에서 끓고, 기압이 낮아지면 끓는점도 낮아짐.",
-    source: "Britannica \"When does water boil?\", https://www.britannica.com/question/When-does-water-boil, 2026-10-09",
+    explanation: "순수한 물은 1기압에서 약 100℃에서 끓고, 기압이 낮아지면 끓는점도 낮아짐.",
+    source: [
+      "Britannica \"When does water boil?\", https://www.britannica.com/question/When-does-water-boil, 2026-10-09",
+      "University of Illinois Physics Van \"Boiling Point\", https://van.physics.illinois.edu/ask/listing/1501, 2026-10-10",
+    ],
   },
   {
     id: "sc-10",
@@ -274,7 +361,10 @@ const QUESTIONS = [
     choices: ["왓슨과 크릭", "멘델과 모건", "다윈과 월리스", "슐라이덴과 슈반"],
     answer: "왓슨과 크릭",
     explanation: "제임스 왓슨과 프랜시스 크릭이 1953년 『네이처』에 DNA 이중 나선 모형을 발표함.",
-    source: "Britannica \"Double helix\", https://www.britannica.com/science/double-helix, 2026-10-09",
+    source: [
+      "Britannica \"Double helix\", https://www.britannica.com/science/double-helix, 2026-10-09",
+      "NHGRI \"1953: DNA Double Helix\", https://www.genome.gov/25520255/online-education-kit-1953-dna-double-helix, 2026-10-10",
+    ],
   },
 
   // 예술과 문화
@@ -284,8 +374,11 @@ const QUESTIONS = [
     question: "루브르 박물관에 있는 〈모나리자〉를 그린 화가는?",
     choices: ["레오나르도 다빈치", "미켈란젤로", "라파엘로", "렘브란트"],
     answer: "레오나르도 다빈치",
-    explanation: "레오나르도 다빈치가 그린 〈모나리자〉는 프랑수아 1세가 사들였고 지금 루브르에 있음.",
-    source: "Louvre \"From the Mona Lisa to The Wedding Feast at Cana\", https://www.louvre.fr/en/explore/the-palace/from-the-mona-lisa-to-the-wedding-feast-at-cana, 2026-10-09",
+    explanation: "레오나르도 다빈치가 그린 〈모나리자〉는 지금 루브르에 있음.",
+    source: [
+      "Louvre \"From the Mona Lisa to The Wedding Feast at Cana\", https://www.louvre.fr/en/explore/the-palace/from-the-mona-lisa-to-the-wedding-feast-at-cana, 2026-10-09",
+      "Britannica \"Mona Lisa\", https://www.britannica.com/topic/Mona-Lisa-painting, 2026-10-10",
+    ],
   },
   {
     id: "ac-02",
@@ -293,8 +386,11 @@ const QUESTIONS = [
     question: "1889년에 그린 〈별이 빛나는 밤〉(뉴욕 현대미술관 소장)의 화가는?",
     choices: ["빈센트 반 고흐", "클로드 모네", "폴 세잔", "폴 고갱"],
     answer: "빈센트 반 고흐",
-    explanation: "반 고흐가 생레미의 요양원에 머물던 1889년 6월에 그림.",
-    source: "MoMA, Richard Thomson \"Vincent van Gogh: The Starry Night\", https://www.moma.org/momaorg/shared/pdfs/docs/learn/courses/Thomson_Van_Gogh_The_Starry_Night.pdf, 2026-10-09",
+    explanation: "반 고흐가 생레미 근처의 요양원에 머물던 1889년에 그림.",
+    source: [
+      "MoMA, Richard Thomson \"Vincent van Gogh: The Starry Night\", https://www.moma.org/momaorg/shared/pdfs/docs/learn/courses/Thomson_Van_Gogh_The_Starry_Night.pdf, 2026-10-09",
+      "Britannica \"The Starry Night\", https://www.britannica.com/topic/The-Starry-Night, 2026-10-10",
+    ],
   },
   {
     id: "ac-03",
@@ -303,7 +399,10 @@ const QUESTIONS = [
     choices: ["베토벤", "모차르트", "바흐", "브람스"],
     answer: "베토벤",
     explanation: "베토벤의 교향곡 9번 라단조는 1824년 빈에서 초연됨.",
-    source: "Britannica \"Symphony No. 9 in D Minor, Op. 125\", https://www.britannica.com/topic/Symphony-No-9-in-D-Minor, 2026-10-09",
+    source: [
+      "Britannica \"Symphony No. 9 in D Minor, Op. 125\", https://www.britannica.com/topic/Symphony-No-9-in-D-Minor, 2026-10-09",
+      "Beethoven-Haus Bonn \"Symphony no. 9 (D minor) op. 125\", https://www.beethoven.de/en/work/view/5556714292117504/Sinfonie+Nr.+9+(d-Moll)+op.+125, 2026-10-10",
+    ],
   },
   {
     id: "ac-04",
@@ -311,17 +410,23 @@ const QUESTIONS = [
     question: "희곡 「로미오와 줄리엣」을 쓴 작가는?",
     choices: ["윌리엄 셰익스피어", "요한 볼프강 폰 괴테", "헨리크 입센", "찰스 디킨스"],
     answer: "윌리엄 셰익스피어",
-    explanation: "셰익스피어가 1594~1596년 무렵 쓴 비극으로, 1597년 처음 출판됨.",
-    source: "Britannica \"William Shakespeare - Romeo and Juliet\", https://www.britannica.com/biography/William-Shakespeare/Romeo-and-Juliet, 2026-10-09",
+    explanation: "셰익스피어가 쓴 비극으로, 1597년 처음 출판됨.",
+    source: [
+      "Britannica \"William Shakespeare - Romeo and Juliet\", https://www.britannica.com/biography/William-Shakespeare/Romeo-and-Juliet, 2026-10-09",
+      "Folger Shakespeare Library \"Romeo and Juliet\", https://www.folger.edu/explore/shakespeares-works/romeo-and-juliet/, 2026-10-10",
+    ],
   },
   {
     id: "ac-05",
     category: "예술과 문화",
-    question: "성진이 양소유로 태어나는 꿈을 그린 조선 숙종 때의 소설 『구운몽』의 작가는?",
+    question: "성진이 양소유로 태어나는 꿈을 그린 소설 『구운몽』의 작가는?",
     choices: ["김만중", "허균", "박지원", "정철"],
     answer: "김만중",
-    explanation: "서포 김만중이 지은 고전 소설로, 꿈과 현실을 오가는 환몽 구조의 대표작임.",
-    source: "한국민족문화대백과사전 「구운몽」, https://encykorea.aks.ac.kr/Article/E0005948, 2026-10-09",
+    explanation: "서포 김만중이 지은 소설임.",
+    source: [
+      "한국민족문화대백과사전 「구운몽」, https://encykorea.aks.ac.kr/Article/E0005948, 2026-10-09",
+      "우리역사넷 「김만중」, https://contents.history.go.kr/mobile/kc/view.do?levelId=kc_n301500&code=kc_age_30, 2026-10-10",
+    ],
   },
   {
     id: "ac-06",
@@ -329,8 +434,11 @@ const QUESTIONS = [
     question: "1943년에 출판된 『어린 왕자』의 작가는?",
     choices: ["앙투안 드 생텍쥐페리", "마르그리트 뒤라스", "오노레 드 발자크", "알베르 카뮈"],
     answer: "앙투안 드 생텍쥐페리",
-    explanation: "비행사이기도 한 생텍쥐페리가 뉴욕에 머물며 쓰고 직접 삽화를 그림.",
-    source: "Britannica \"Antoine de Saint-Exupéry\", https://www.britannica.com/biography/Antoine-de-Saint-Exupery, 2026-10-09",
+    explanation: "비행사이기도 한 생텍쥐페리가 글을 쓰고 삽화도 직접 그림.",
+    source: [
+      "Britannica \"Antoine de Saint-Exupéry\", https://www.britannica.com/biography/Antoine-de-Saint-Exupery, 2026-10-09",
+      "BnF Passerelles \"Le Petit Prince d'Antoine de Saint-Exupéry\", https://passerelles.essentiels.bnf.fr/fr/chronologie/article/ec98150e-a4b6-4fba-9944-5faf4b1c7436-petit-prince-antoine-saint-exupery, 2026-10-10",
+    ],
   },
   {
     id: "ac-07",
@@ -339,7 +447,10 @@ const QUESTIONS = [
     choices: ["주세페 베르디", "자코모 푸치니", "리하르트 바그너", "조아키노 로시니"],
     answer: "주세페 베르디",
     explanation: "베르디의 3막 오페라로, 뒤마 피스의 『춘희』를 바탕으로 함.",
-    source: "Britannica \"La traviata\", https://www.britannica.com/topic/La-traviata, 2026-10-09",
+    source: [
+      "Britannica \"La traviata\", https://www.britannica.com/topic/La-traviata, 2026-10-09",
+      "Teatro La Fenice \"Verdi, La traviata\", https://www.teatrolafenice.it/en/event/giuseppe-verdi-la-traviata-2/, 2026-10-10",
+    ],
   },
   {
     id: "ac-08",
@@ -348,16 +459,22 @@ const QUESTIONS = [
     choices: ["정선", "김홍도", "신윤복", "안견"],
     answer: "정선",
     explanation: "겸재 정선이 그린 진경산수화로 국보로 지정됨.",
-    source: "한국민족문화대백과사전 「정선 필 인왕제색도」, https://encykorea.aks.ac.kr/Article/E0046984, 2026-10-09",
+    source: [
+      "한국민족문화대백과사전 「정선 필 인왕제색도」, https://encykorea.aks.ac.kr/Article/E0046984, 2026-10-09",
+      "국가유산포털 「정선 필 인왕제색도」, https://www.heritage.go.kr/heri/cul/culSelectDetail.do?pageNo=1_1_1_0&ccbaKdcd=11&ccbaAsno=0002160000000&ccbaCtcd=11&ccbaCpno=1111102160000, 2026-10-10",
+    ],
   },
   {
     id: "ac-09",
     category: "예술과 문화",
-    question: "〈씨름〉, 〈서당〉, 〈무동〉이 실린 조선 후기 풍속도 화첩(보물)을 그린 화가는?",
+    question: "〈씨름〉, 〈서당〉, 〈무동〉을 그린 조선 후기 화가는?",
     choices: ["김홍도", "신윤복", "정선", "장승업"],
     answer: "김홍도",
-    explanation: "단원 김홍도의 풍속화 25점으로 된 화첩으로 국립중앙박물관이 소장함.",
-    source: "한국민족문화대백과사전 「김홍도 필 풍속도 화첩」, https://encykorea.aks.ac.kr/Article/E0013639, 2026-10-09",
+    explanation: "세 그림은 단원 김홍도의 풍속화 25점으로 된 화첩에 실림.",
+    source: [
+      "한국민족문화대백과사전 「김홍도 필 풍속도 화첩」, https://encykorea.aks.ac.kr/Article/E0013639, 2026-10-09",
+      "국립중앙박물관 「단원풍속도첩, 김홍도」, https://www.museum.go.kr/MUSEUM/contents/M0501000000.do?schM=view&relicRecommendId=16847, 2026-10-10",
+    ],
   },
   {
     id: "ac-10",
@@ -366,6 +483,9 @@ const QUESTIONS = [
     choices: ["파블로 피카소", "살바도르 달리", "호안 미로", "앙리 마티스"],
     answer: "파블로 피카소",
     explanation: "피카소가 1937년 파리 만국박람회 스페인관을 위해 그렸고 지금은 레이나 소피아 미술관에 있음.",
-    source: "Museo Reina Sofía \"Guernica\", https://www.museoreinasofia.es/en/collections/artwork/guernica-0/, 2026-10-09",
+    source: [
+      "Museo Reina Sofía \"Guernica\", https://www.museoreinasofia.es/en/collections/artwork/guernica-0/, 2026-10-09",
+      "Britannica \"Guernica\", https://www.britannica.com/topic/Guernica-by-Picasso, 2026-10-10",
+    ],
   },
 ];
