@@ -10,7 +10,7 @@ allowed-tools: Read Grep WebSearch WebFetch
 ## 1단계: 문항 추가
 
 - `.claude/commands/quiz-add.md`를 읽고 그 절차를 따른다
-- 그 파일의 `$ARGUMENTS`(n)는 1로 읽는다. 이 명령어에 인수를 붙여도 n은 1이다
+- quiz-add.md에서 개수 n을 받는 자리는 1로 읽는다. 이 명령어에 인수를 붙여도 n은 1이다
 - 그 파일의 절차대로, 만든 문항을 보여 준 뒤 승인을 기다리며 차례를 끝낸다. 승인을 받으면 그 파일의 3단계를 이어서 한다
 
 ## 2단계: 점검
