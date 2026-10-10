@@ -134,6 +134,18 @@ const QUESTIONS = [
       "우리역사넷 「태조이성계」, https://contents.history.go.kr/mobile/kc/view.do?levelId=kc_n312600&code=kc_age_30, 2026-10-10",
     ],
   },
+  {
+    id: "kh-12",
+    category: "한국사",
+    question: "1377년 청주 흥덕사에서 금속 활자로 찍었으며, 지금은 프랑스 국립 도서관에 있는 책은?",
+    choices: ["직지심체요절", "팔만대장경", "삼국사기", "동의보감"],
+    answer: "직지심체요절",
+    explanation: "승려 경한이 엮은 『직지심체요절』은 1377년 청주 흥덕사에서 금속 활자로 간행되었고, 지금 프랑스 국립 도서관에 있음.",
+    source: [
+      "한국민족문화대백과사전 「직지심체요절 권하」, https://encykorea.aks.ac.kr/Article/E0071845, 2026-10-10",
+      "우리역사넷 「직지심체요절은 무엇인가요?」, https://contents.history.go.kr/mobile/eh/view.do?levelId=eh_r0160_0010, 2026-10-10",
+    ],
+  },
 
   // 세계지리
   {
@@ -266,6 +278,18 @@ const QUESTIONS = [
     source: [
       "Britannica \"Cairo\", https://www.britannica.com/place/Cairo, 2026-10-10",
       "National Geographic Kids \"Egypt Country Profile\", https://kids.nationalgeographic.com/geography/countries/article/egypt, 2026-10-10",
+    ],
+  },
+  {
+    id: "wg-12",
+    category: "세계지리",
+    question: "케냐의 수도는?",
+    choices: ["나이로비", "몸바사", "키수무", "나쿠루"],
+    answer: "나이로비",
+    explanation: "1963년 영국에서 독립한 케냐의 수도는 나이로비임.",
+    source: [
+      "EBSCO Research Starters \"Nairobi, Kenya\", https://www.ebsco.com/research-starters/geography-and-cartography/nairobi-kenya/, 2026-10-10",
+      "National Geographic Kids \"Kenya\", https://kids.nationalgeographic.com/geography/countries/article/kenya, 2026-10-10",
     ],
   },
 
@@ -402,6 +426,18 @@ const QUESTIONS = [
       "Britannica \"Insulin\", https://www.britannica.com/science/insulin, 2026-10-10",
     ],
   },
+  {
+    id: "sc-12",
+    category: "과학",
+    question: "힘의 SI 단위는?",
+    choices: ["뉴턴(N)", "줄(J)", "와트(W)", "파스칼(Pa)"],
+    answer: "뉴턴(N)",
+    explanation: "1뉴턴은 질량 1kg인 물체에 1m/s²의 가속도를 주는 힘임.",
+    source: [
+      "NPL \"What is the SI unit of force?\", https://www.npl.co.uk/resources/q-a/what-is-the-si-unit-of-force, 2026-10-10",
+      "Britannica \"Newton\", https://www.britannica.com/science/newton-unit-of-measurement, 2026-10-10",
+    ],
+  },
 
   // 예술과 문화
   {
@@ -534,6 +570,18 @@ const QUESTIONS = [
     source: [
       "Nasjonalmuseet \"Edvard Munch, The Scream\", https://www.nasjonalmuseet.no/en/collection/object/NG.M.00939, 2026-10-10",
       "Britannica \"Edvard Munch\", https://www.britannica.com/biography/Edvard-Munch, 2026-10-10",
+    ],
+  },
+  {
+    id: "ac-12",
+    category: "예술과 문화",
+    question: "〈진주 귀고리를 한 소녀〉를 그린 화가는?",
+    choices: ["요하네스 페르메이르", "렘브란트 판 레인", "프란스 할스", "얀 스테인"],
+    answer: "요하네스 페르메이르",
+    explanation: "페르메이르가 1665년 무렵 그린 트로니(특정 인물이 아닌 인물 유형을 그린 그림)로, 헤이그의 마우리츠하위스가 소장함.",
+    source: [
+      "Mauritshuis \"Johannes Vermeer, Girl with a Pearl Earring\", https://www.mauritshuis.nl/en/our-collection/artworks/670-girl-with-a-pearl-earring, 2026-10-10",
+      "Britannica \"Girl with a Pearl Earring\", https://www.britannica.com/topic/Girl-with-a-Pearl-Earring-by-Vermeer, 2026-10-10",
     ],
   },
 ];
