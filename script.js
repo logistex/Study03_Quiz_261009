@@ -14,6 +14,7 @@ const state = {
 
 const LEADERBOARD_KEY = "quiz-leaderboard";
 const CATEGORIES = ["한국사", "세계지리", "과학", "예술과 문화"];
+const ROUND_SIZE = 10;
 
 function showScreen(name) {
   document.querySelectorAll("main > section").forEach(section => {
@@ -28,6 +29,10 @@ function shuffle(items) {
     [result[i], result[j]] = [result[j], result[i]];
   }
   return result;
+}
+
+function pickRound(list, size = ROUND_SIZE) {
+  return shuffle(list).slice(0, size);
 }
 
 function scoreFor(correct, hintUsed, mode) {
@@ -96,7 +101,7 @@ function startCategory(category) {
 function startMode(mode) {
   state.mode = mode;
   state.firstScore = null;
-  startRound(QUESTIONS.filter(q => q.category === state.category));
+  startRound(pickRound(QUESTIONS.filter(q => q.category === state.category)));
 }
 
 function startRound(list) {
@@ -348,6 +353,20 @@ function runSelfTests() {
   check("문항: 모든 문항의 출처가 2개(CLAUDE.md 규칙 4)", () =>
     QUESTIONS.every(q => Array.isArray(q.source) && q.source.length === 2 &&
       q.source.every(s => typeof s === "string" && s.trim() !== "")));
+  check("출제: 한 판은 10문항(PRD 5.2항)", () => ROUND_SIZE === 10);
+  check("출제: 문항이 10개보다 많으면 서로 다른 10문항을 뽑고 원본을 바꾸지 않음", () => {
+    const pool = Array.from({ length: 25 }, (_, i) => i), before = pool.join();
+    const picked = pickRound(pool);
+    return picked.length === 10 && new Set(picked).size === 10 &&
+      picked.every(x => pool.includes(x)) && pool.join() === before;
+  });
+  check("출제: 문항이 10개면 10개를 모두 냄", () =>
+    [...pickRound([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])].sort((a, b) => a - b).join() === "0,1,2,3,4,5,6,7,8,9");
+  check("출제: 판마다 무작위로 뽑음(20판에서 10개보다 많은 문항이 나옴)", () => {
+    const pool = Array.from({ length: 25 }, (_, i) => i), seen = new Set();
+    for (let k = 0; k < 20; k++) pickRound(pool).forEach(x => seen.add(x));
+    return seen.size > 10;
+  });
   // 태스크마다 여기에 check(...)를 더함
   const failed = results.filter(ok => !ok).length;
   console.log(failed ? `점검 실패: ${failed}개` : `점검 통과: ${results.length}개`);
