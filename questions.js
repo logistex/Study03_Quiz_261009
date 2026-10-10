@@ -122,6 +122,18 @@ const QUESTIONS = [
       "우리역사넷 「정약용의 거중기」, https://contents.history.go.kr/mobile/hm/view.do?levelId=hm_112_0050, 2026-10-10",
     ],
   },
+  {
+    id: "kh-11",
+    category: "한국사",
+    question: "1392년 왕위에 올라 조선의 제1대 왕(태조)이 된 인물은?",
+    choices: ["이성계", "이방원", "최영", "정몽주"],
+    answer: "이성계",
+    explanation: "이성계는 위화도 회군으로 실권을 잡은 뒤 1392년 왕위에 올라 조선의 태조가 됨.",
+    source: [
+      "한국민족문화대백과사전 「태조」, https://encykorea.aks.ac.kr/Article/E0059033, 2026-10-10",
+      "우리역사넷 「태조이성계」, https://contents.history.go.kr/mobile/kc/view.do?levelId=kc_n312600&code=kc_age_30, 2026-10-10",
+    ],
+  },
 
   // 세계지리
   {
@@ -242,6 +254,18 @@ const QUESTIONS = [
     source: [
       "Britannica \"Ankara, capital of Turkey\", https://www.britannica.com/summary/Ankara, 2026-10-09",
       "EBSCO Research Starters \"Ankara, Turkey\", https://www.ebsco.com/research-starters/geography-and-cartography/ankara-turkey/, 2026-10-10",
+    ],
+  },
+  {
+    id: "wg-11",
+    category: "세계지리",
+    question: "이집트의 수도는?",
+    choices: ["카이로", "알렉산드리아", "룩소르", "아스완"],
+    answer: "카이로",
+    explanation: "카이로는 이집트의 수도로, 그 북쪽에 나일강 삼각주가 펼쳐짐.",
+    source: [
+      "Britannica \"Cairo\", https://www.britannica.com/place/Cairo, 2026-10-10",
+      "National Geographic Kids \"Egypt Country Profile\", https://kids.nationalgeographic.com/geography/countries/article/egypt, 2026-10-10",
     ],
   },
 
@@ -366,6 +390,18 @@ const QUESTIONS = [
       "NHGRI \"1953: DNA Double Helix\", https://www.genome.gov/25520255/online-education-kit-1953-dna-double-helix, 2026-10-10",
     ],
   },
+  {
+    id: "sc-11",
+    category: "과학",
+    question: "혈당을 조절하는 호르몬인 인슐린을 만드는 기관은?",
+    choices: ["췌장", "갑상샘", "부신", "간"],
+    answer: "췌장",
+    explanation: "인슐린은 췌장에서 만들어져 혈당을 조절하는 호르몬임.",
+    source: [
+      "MedlinePlus \"Diabetes\", https://medlineplus.gov/ency/article/001214.htm, 2026-10-10",
+      "Britannica \"Insulin\", https://www.britannica.com/science/insulin, 2026-10-10",
+    ],
+  },
 
   // 예술과 문화
   {
@@ -486,6 +522,18 @@ const QUESTIONS = [
     source: [
       "Museo Reina Sofía \"Guernica\", https://www.museoreinasofia.es/en/collections/artwork/guernica-0/, 2026-10-09",
       "Britannica \"Guernica\", https://www.britannica.com/topic/Guernica-by-Picasso, 2026-10-10",
+    ],
+  },
+  {
+    id: "ac-11",
+    category: "예술과 문화",
+    question: "1893년에 그린 〈절규〉의 화가는?",
+    choices: ["에드바르 뭉크", "구스타프 클림트", "에곤 실레", "바실리 칸딘스키"],
+    answer: "에드바르 뭉크",
+    explanation: "뭉크가 1893년에 그린 판본은 오슬로의 국립 박물관이 소장함.",
+    source: [
+      "Nasjonalmuseet \"Edvard Munch, The Scream\", https://www.nasjonalmuseet.no/en/collection/object/NG.M.00939, 2026-10-10",
+      "Britannica \"Edvard Munch\", https://www.britannica.com/biography/Edvard-Munch, 2026-10-10",
     ],
   },
 ];
