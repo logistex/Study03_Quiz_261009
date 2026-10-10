@@ -1,0 +1,64 @@
+<!-- 2026-10-09 17:04 KST -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>상식 퀴즈</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <section id="screen-start">
+      <p>학번 xxxx 이름 신해웅</p>
+      <h1>상식 퀴즈</h1>
+      <p>카테고리를 고르세요.</p>
+      <div class="category-list">
+        <button data-category="한국사">한국사</button>
+        <button data-category="세계지리">세계지리</button>
+        <button data-category="과학">과학</button>
+        <button data-category="예술과 문화">예술과 문화</button>
+      </div>
+    </section>
+
+    <section id="screen-mode" hidden>
+      <h2 id="mode-category"></h2>
+      <p>모드를 고르세요.</p>
+      <div>
+        <button data-mode="practice">연습<br><span class="note">순위표에 기록되지 않음</span></button>
+        <button data-mode="speed">스피드</button>
+        <button data-mode="hint">힌트</button>
+      </div>
+    </section>
+
+    <section id="screen-question" hidden>
+      <div class="status">
+        <span id="progress"></span>
+        <span id="timer"></span>
+        <span id="current-score"></span>
+      </div>
+      <p id="question-text"></p>
+      <div id="choice-list" class="choice-list"></div>
+      <button id="hint-button">힌트</button>
+      <div id="feedback" hidden>
+        <p id="feedback-result"></p>
+        <p id="feedback-explanation"></p>
+        <p id="feedback-source" class="source"></p>
+        <button id="next-button"></button>
+      </div>
+    </section>
+
+    <section id="screen-result" hidden>
+      <h2>결과</h2>
+      <p id="result-first" hidden></p>
+      <p id="result-score" class="result-score"></p>
+      <p id="result-note" class="note">순위표에 기록되지 않음</p>
+      <button id="retry-button">틀린 문제 다시 풀기</button>
+      <button id="home-button">처음으로</button>
+    </section>
+  </main>
+
+  <script src="questions.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
