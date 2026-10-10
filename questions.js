@@ -146,6 +146,18 @@ const QUESTIONS = [
       "우리역사넷 「직지심체요절은 무엇인가요?」, https://contents.history.go.kr/mobile/eh/view.do?levelId=eh_r0160_0010, 2026-10-10",
     ],
   },
+  {
+    id: "kh-13",
+    category: "한국사",
+    question: "612년 살수에서 수나라 군대를 크게 무찌른 고구려의 장수는?",
+    choices: ["을지문덕", "연개소문", "양만춘", "강감찬"],
+    answer: "을지문덕",
+    explanation: "612년(영양왕 23) 수 양제가 고구려를 침공했고, 을지문덕이 살수에서 수나라 군대를 물리침.",
+    source: [
+      "한국민족문화대백과사전 「을지문덕」, https://encykorea.aks.ac.kr/Article/E0042969, 2026-10-10",
+      "우리역사넷 「을지문덕」, https://contents.history.go.kr/mobile/kc/view.do?levelId=kc_n101520&code=kc_age_10, 2026-10-10",
+    ],
+  },
 
   // 세계지리
   {
@@ -290,6 +302,18 @@ const QUESTIONS = [
     source: [
       "EBSCO Research Starters \"Nairobi, Kenya\", https://www.ebsco.com/research-starters/geography-and-cartography/nairobi-kenya/, 2026-10-10",
       "National Geographic Kids \"Kenya\", https://kids.nationalgeographic.com/geography/countries/article/kenya, 2026-10-10",
+    ],
+  },
+  {
+    id: "wg-13",
+    category: "세계지리",
+    question: "아르헨티나의 수도는?",
+    choices: ["부에노스아이레스", "코르도바", "로사리오", "멘도사"],
+    answer: "부에노스아이레스",
+    explanation: "부에노스아이레스는 1816년에 독립한 아르헨티나의 수도임.",
+    source: [
+      "EBSCO Research Starters \"Buenos Aires, Argentina\", https://www.ebsco.com/research-starters/geography-and-cartography/buenos-aires-argentina, 2026-10-10",
+      "National Geographic Kids \"Argentina Country Profile\", https://kids.nationalgeographic.com/geography/countries/article/argentina, 2026-10-10",
     ],
   },
 
@@ -438,6 +462,18 @@ const QUESTIONS = [
       "Britannica \"Newton\", https://www.britannica.com/science/newton-unit-of-measurement, 2026-10-10",
     ],
   },
+  {
+    id: "sc-13",
+    category: "과학",
+    question: "1869년에 주기율표를 만들어 발표한 화학자는?",
+    choices: ["드미트리 멘델레예프", "앙투안 라부아지에", "존 돌턴", "닐스 보어"],
+    answer: "드미트리 멘델레예프",
+    explanation: "멘델레예프는 원자량을 기준으로 원소를 배열함.",
+    source: [
+      "Science History Institute \"Mendeleev's Legacy: The Periodic System\", https://www.sciencehistory.org/stories/magazine/mendeleevs-legacy-the-periodic-system/, 2026-10-10",
+      "Los Alamos National Laboratory \"Mendeleev's Mission\", https://www.lanl.gov/science-engineering/periodic-table/mendeleevs-mission, 2026-10-10",
+    ],
+  },
 
   // 예술과 문화
   {
@@ -582,6 +618,18 @@ const QUESTIONS = [
     source: [
       "Mauritshuis \"Johannes Vermeer, Girl with a Pearl Earring\", https://www.mauritshuis.nl/en/our-collection/artworks/670-girl-with-a-pearl-earring, 2026-10-10",
       "Britannica \"Girl with a Pearl Earring\", https://www.britannica.com/topic/Girl-with-a-Pearl-Earring-by-Vermeer, 2026-10-10",
+    ],
+  },
+  {
+    id: "ac-13",
+    category: "예술과 문화",
+    question: "빈의 비덴 극장에서 초연된 오페라 〈마술피리〉의 작곡가는?",
+    choices: ["볼프강 아마데우스 모차르트", "요제프 하이든", "안토니오 살리에리", "카를 마리아 폰 베버"],
+    answer: "볼프강 아마데우스 모차르트",
+    explanation: "모차르트가 1791년에 완성한 오페라로, 빈의 비덴 극장에서 초연됨.",
+    source: [
+      "International Mozarteum Foundation (Google Arts & Culture) \"Wolfgang Amadé Mozart's \"The Magic Flute\": Magical since 1791\", https://artsandculture.google.com/story/swVBUNKB_qSvZw, 2026-10-10",
+      "Wiener Staatsoper \"Mozart's Die Zauberflöte\", https://www.wiener-staatsoper.at/en/calendar/detail/die-zauberfloete/, 2026-10-10",
     ],
   },
 ];
