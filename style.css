@@ -84,6 +84,10 @@ button:disabled {
   font-weight: bold;
 }
 
+.rank-line {
+  font-weight: bold;
+}
+
 #leaderboard-tables table {
   width: 100%;
   border-collapse: collapse;

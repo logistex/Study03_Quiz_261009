@@ -259,6 +259,11 @@ function showResult() {
   showScreen("result");
 }
 
+function rankMessage(mode, category, rank) {
+  if (rank === null) return "이번 점수는 상위 10위 밖이라 순위표에 남지 않음";
+  return `이번 점수는 ${MODES[mode].name} ${category} 표에서 ${rank}위`;
+}
+
 function saveRecord() {
   const name = cleanName(document.getElementById("player-name").value);
   if (!name) return;
@@ -268,6 +273,9 @@ function saveRecord() {
     return;
   }
   renderLeaderboard();
+  const rankLine = document.getElementById("leaderboard-rank");
+  rankLine.textContent = rankMessage(state.mode, state.category, recorded.rank);
+  rankLine.hidden = false;
   showScreen("leaderboard");
 }
 
@@ -334,6 +342,7 @@ function init() {
     showScreen("start");
   });
   document.getElementById("leaderboard-button").addEventListener("click", () => {
+    document.getElementById("leaderboard-rank").hidden = true;
     renderLeaderboard();
     showScreen("leaderboard");
   });
@@ -417,6 +426,9 @@ function runSelfTests() {
     for (let k = 0; k < 20; k++) pickRound(pool).forEach(x => seen.add(x));
     return seen.size > 10;
   });
+  check("순위 안내: 저장한 기록의 순위를 표 이름과 함께 알림", () =>
+    rankMessage("speed", "과학", 3) === "이번 점수는 스피드 과학 표에서 3위" &&
+      rankMessage("hint", "한국사", null) === "이번 점수는 상위 10위 밖이라 순위표에 남지 않음");
   // 태스크마다 여기에 check(...)를 더함
   const failed = results.filter(ok => !ok).length;
   console.log(failed ? `점검 실패: ${failed}개` : `점검 통과: ${results.length}개`);
