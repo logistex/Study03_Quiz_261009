@@ -168,7 +168,10 @@ function useHint() {
   const q = state.questions[state.index];
   const picked = pickHintChoices(q.choices, q.answer);
   for (const button of document.getElementById("choice-list").children) {
-    if (picked.includes(button.textContent)) button.disabled = true;
+    if (picked.includes(button.textContent)) {
+      button.disabled = true;
+      button.classList.add("hint-removed");
+    }
   }
   state.hintUsed = true;
   document.getElementById("hint-button").disabled = true;

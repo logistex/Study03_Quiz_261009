@@ -30,6 +30,11 @@ button:disabled {
   cursor: default;
 }
 
+/* 힌트로 지운 오답 2개: 흐리게 보이는 것에 더해 취소선을 그음 */
+.choice-list button.hint-removed {
+  text-decoration: line-through;
+}
+
 .category-list,
 .choice-list {
   display: grid;
