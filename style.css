@@ -106,3 +106,11 @@ button:disabled {
 #mode-back-button {
   margin-top: 16px;
 }
+
+/* 모드 선택 단추 3개의 높이를 맞춤(연습 단추만 두 줄이라 높았음) */
+#screen-mode > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: stretch;
+}
