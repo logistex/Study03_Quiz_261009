@@ -114,3 +114,30 @@ button:disabled {
   gap: 8px;
   align-items: stretch;
 }
+
+/* 스피드 모드에서 남은 시간이 5초 이하이면 빨간색 */
+#timer.danger {
+  color: #c93c3c;
+  font-weight: bold;
+}
+
+/* 결과 화면의 문항별 목록과 이름 입력 */
+.result-list {
+  padding-left: 1.4em;
+}
+
+#save-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin: 16px 0;
+}
+
+#player-name {
+  font: inherit;
+  padding: 8px 12px;
+  border: 1px solid #bbb;
+  border-radius: 8px;
+  min-width: 0;
+}
