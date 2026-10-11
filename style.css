@@ -101,3 +101,8 @@ button:disabled {
 #leaderboard-tables th {
   background: #eee;
 }
+
+/* 모드 선택 화면에서 카테고리 화면으로 돌아가는 단추 */
+#mode-back-button {
+  margin-top: 16px;
+}
