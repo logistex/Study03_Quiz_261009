@@ -281,6 +281,7 @@ function init() {
   document.querySelectorAll("[data-mode]").forEach(button => {
     button.addEventListener("click", () => startMode(button.dataset.mode));
   });
+  document.getElementById("mode-back-button").addEventListener("click", () => showScreen("start"));
   document.getElementById("hint-button").addEventListener("click", useHint);
   document.getElementById("next-button").addEventListener("click", () => {
     if (state.index === state.questions.length - 1) showResult();

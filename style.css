@@ -101,3 +101,16 @@ button:disabled {
 #leaderboard-tables th {
   background: #eee;
 }
+
+/* 모드 선택 화면에서 카테고리 화면으로 돌아가는 단추 */
+#mode-back-button {
+  margin-top: 16px;
+}
+
+/* 모드 선택 단추 3개의 높이를 맞춤(연습 단추만 두 줄이라 높았음) */
+#screen-mode > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: stretch;
+}
