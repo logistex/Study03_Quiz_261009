@@ -9,7 +9,7 @@ const MODES = {
 const state = {
   category: null, mode: "practice", questions: [], index: 0, score: 0,
   hintUsed: false, wrong: [], secondsLeft: 0,
-  answered: false, firstScore: null, timerId: null,
+  answered: false, firstScore: null, timerId: null, log: [],
 };
 
 const LEADERBOARD_KEY = "quiz-leaderboard";
@@ -49,6 +49,10 @@ function todayString(date = new Date()) {
   return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
 }
 
+function cleanName(text) {
+  return String(text ?? "").trim().slice(0, 10);
+}
+
 function parseLeaderboard(text) {
   let board;
   try {
@@ -59,7 +63,8 @@ function parseLeaderboard(text) {
   if (!board || typeof board !== "object" || Array.isArray(board)) return {};
   for (const key of Object.keys(board)) {
     const list = Array.isArray(board[key]) ? board[key] : [];
-    board[key] = list.filter(entry => entry && typeof entry.date === "string" && typeof entry.score === "number");
+    board[key] = list.filter(entry => entry && typeof entry.date === "string" && typeof entry.score === "number")
+      .map(entry => ({ name: typeof entry.name === "string" ? entry.name : "", date: entry.date, score: entry.score }));
   }
   return board;
 }
@@ -79,10 +84,10 @@ function insertScore(list, entry) {
   return { list: next, rank: pos < 10 ? pos + 1 : null };
 }
 
-function recordScore(mode, category, score, date = todayString()) {
+function recordScore(mode, category, score, name, date = todayString()) {
   const board = loadLeaderboard();
   const key = `${mode}|${category}`;
-  const result = insertScore(board[key] || [], { date, score });
+  const result = insertScore(board[key] || [], { name: cleanName(name), date, score });
   board[key] = result.list;
   try {
     localStorage.setItem(LEADERBOARD_KEY, JSON.stringify(board));
@@ -109,6 +114,7 @@ function startRound(list) {
   state.index = 0;
   state.score = 0;
   state.wrong = [];
+  state.log = [];
   renderQuestion();
   showScreen("question");
 }
@@ -133,6 +139,8 @@ function renderQuestion() {
   const hintButton = document.getElementById("hint-button");
   hintButton.hidden = MODES[state.mode].hintCount === 0;
   hintButton.disabled = false;
+  hintButton.textContent = "힌트 (오답 2개 지우기)";
+  document.getElementById("timer").classList.remove("danger");
   if (MODES[state.mode].timeLimit > 0) startTimer();
 }
 
@@ -144,6 +152,7 @@ function startTimer() {
   state.timerId = setInterval(() => {
     state.secondsLeft--;
     timer.textContent = `${state.secondsLeft}초`;
+    timer.classList.toggle("danger", state.secondsLeft <= 5);
     if (state.secondsLeft <= 0) onTimeout();
   }, 1000);
 }
@@ -174,7 +183,9 @@ function useHint() {
     }
   }
   state.hintUsed = true;
-  document.getElementById("hint-button").disabled = true;
+  const hintButton = document.getElementById("hint-button");
+  hintButton.disabled = true;
+  hintButton.textContent = "힌트 사용함";
 }
 
 function selectChoice(choice) {
@@ -198,6 +209,7 @@ function revealAnswer(selected) {
   }
   let result = selected === q.answer ? "정답" : "오답";
   if (selected === null) result = "시간 초과";
+  state.log.push({ question: q.question, result, hint: state.hintUsed });
   document.getElementById("feedback-result").textContent = result;
   document.getElementById("feedback-explanation").textContent = q.explanation;
   document.getElementById("feedback-source").textContent = `출처: ${q.source.join(" / ")}`;
@@ -212,6 +224,11 @@ function nextQuestion() {
   renderQuestion();
 }
 
+function resultLine(entry) {
+  if (entry.result === "정답" && entry.hint) return "정답 (힌트 0.5점)";
+  return entry.result;
+}
+
 function showResult() {
   const score = formatScore(state.score, state.questions.length);
   const first = document.getElementById("result-first");
@@ -223,16 +240,35 @@ function showResult() {
     document.getElementById("result-score").textContent = `다시 푼 점수 ${score}`;
   }
   document.getElementById("result-note").hidden = MODES[state.mode].leaderboard;
-  const rank = document.getElementById("result-rank");
-  rank.hidden = !(state.firstScore === null && MODES[state.mode].leaderboard);
-  if (!rank.hidden) {
-    const recorded = recordScore(state.mode, state.category, state.score);
-    if (!recorded.saved) rank.textContent = "순위표를 저장할 수 없음";
-    else if (recorded.rank === null) rank.textContent = "상위 10위 밖";
-    else rank.textContent = `이번 점수는 ${recorded.rank}위`;
+  const list = document.getElementById("result-list");
+  list.replaceChildren();
+  for (const entry of state.log) {
+    const item = document.createElement("li");
+    const mark = document.createElement("strong");
+    mark.textContent = resultLine(entry);
+    item.append(mark, ` ${entry.question}`);
+    list.appendChild(item);
   }
+  const canSave = state.firstScore === null && MODES[state.mode].leaderboard;
+  document.getElementById("save-form").hidden = !canSave;
+  document.getElementById("save-error").hidden = true;
+  const nameInput = document.getElementById("player-name");
+  nameInput.value = "";
+  document.getElementById("save-button").disabled = true;
   document.getElementById("retry-button").hidden = !(MODES[state.mode].retry && state.wrong.length > 0);
   showScreen("result");
+}
+
+function saveRecord() {
+  const name = cleanName(document.getElementById("player-name").value);
+  if (!name) return;
+  const recorded = recordScore(state.mode, state.category, state.score, name);
+  if (!recorded.saved) {
+    document.getElementById("save-error").hidden = false;
+    return;
+  }
+  renderLeaderboard();
+  showScreen("leaderboard");
 }
 
 function retryWrong() {
@@ -260,14 +296,14 @@ function renderLeaderboard() {
       }
       const table = document.createElement("table");
       const head = table.insertRow();
-      for (const label of ["순위", "날짜", "점수"]) {
+      for (const label of ["순위", "이름", "점수", "날짜"]) {
         const th = document.createElement("th");
         th.textContent = label;
         head.appendChild(th);
       }
       list.forEach((entry, i) => {
         const row = table.insertRow();
-        for (const value of [i + 1, entry.date, entry.score]) row.insertCell().textContent = value;
+        for (const value of [i + 1, entry.name, entry.score, entry.date]) row.insertCell().textContent = value;
       });
       container.appendChild(table);
     }
@@ -288,6 +324,11 @@ function init() {
     else nextQuestion();
   });
   document.getElementById("retry-button").addEventListener("click", retryWrong);
+  document.getElementById("again-button").addEventListener("click", () => startMode(state.mode));
+  document.getElementById("player-name").addEventListener("input", event => {
+    document.getElementById("save-button").disabled = cleanName(event.target.value) === "";
+  });
+  document.getElementById("save-button").addEventListener("click", saveRecord);
   document.getElementById("home-button").addEventListener("click", () => {
     stopTimer();
     showScreen("start");
@@ -336,7 +377,7 @@ function runSelfTests() {
   check("저장값 해석: 표가 배열이 아니거나 기록이 깨졌으면 걸러 냄", () =>
     JSON.stringify(parseLeaderboard('{"speed|한국사": 5}')) === '{"speed|한국사":[]}' &&
     JSON.stringify(parseLeaderboard('{"speed|한국사": [null, {"date": "2026-10-09", "score": 3}]}')) ===
-      '{"speed|한국사":[{"date":"2026-10-09","score":3}]}');
+      '{"speed|한국사":[{"name":"","date":"2026-10-09","score":3}]}');
   check("날짜: 로컬 날짜, 두 자리 채움", () =>
     todayString(new Date(2026, 9, 9, 8, 30)) === "2026-10-09" && todayString(new Date(2026, 0, 5)) === "2026-01-05");
   check("순위표: 11개를 넣어도 10개만 남음", () => {
@@ -358,6 +399,11 @@ function runSelfTests() {
     QUESTIONS.every(q => Array.isArray(q.source) && q.source.length === 2 &&
       q.source.every(s => typeof s === "string" && s.trim() !== "")));
   check("출제: 한 판은 10문항(PRD 5.2항)", () => ROUND_SIZE === 10);
+  check("이름: 앞뒤 공백을 지우고 10자까지만 받음", () =>
+    cleanName("  홍길동  ") === "홍길동" && cleanName("   ") === "" && cleanName("가나다라마바사아자차카") === "가나다라마바사아자차");
+  check("저장값 해석: 이름이 없던 기록은 빈 이름으로 읽음", () =>
+    JSON.stringify(parseLeaderboard('{"speed|과학": [{"date": "2026-10-09", "score": 3}]}')) ===
+      '{"speed|과학":[{"name":"","date":"2026-10-09","score":3}]}');
   check("출제: 문항이 10개보다 많으면 서로 다른 10문항을 뽑고 원본을 바꾸지 않음", () => {
     const pool = Array.from({ length: 25 }, (_, i) => i), before = pool.join();
     const picked = pickRound(pool);

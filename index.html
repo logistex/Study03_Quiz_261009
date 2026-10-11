@@ -20,16 +20,16 @@
         <button data-category="과학">과학</button>
         <button data-category="예술과 문화">예술과 문화</button>
       </div>
-      <button id="leaderboard-button">순위표</button>
+      <button id="leaderboard-button">순위표 보기</button>
     </section>
 
     <section id="screen-mode" hidden>
       <h2 id="mode-category"></h2>
       <p>모드를 고르세요.</p>
       <div>
-        <button data-mode="practice">연습<br><span class="note">순위표에 기록되지 않음</span></button>
-        <button data-mode="speed">스피드</button>
-        <button data-mode="hint">힌트</button>
+        <button data-mode="practice">연습<br><span class="note">틀린 문제를 다시 풀 수 있음</span><br><span class="note">순위표에 기록되지 않음</span></button>
+        <button data-mode="speed">스피드<br><span class="note">문항마다 15초 안에 답함</span></button>
+        <button data-mode="hint">힌트<br><span class="note">오답 2개를 지우고 맞히면 0.5점</span></button>
       </div>
       <button id="mode-back-button">뒤로</button>
     </section>
@@ -42,7 +42,7 @@
       </div>
       <p id="question-text"></p>
       <div id="choice-list" class="choice-list"></div>
-      <button id="hint-button">힌트</button>
+      <button id="hint-button">힌트 (오답 2개 지우기)</button>
       <div id="feedback" hidden>
         <p id="feedback-result"></p>
         <p id="feedback-explanation"></p>
@@ -55,9 +55,16 @@
       <h2>결과</h2>
       <p id="result-first" hidden></p>
       <p id="result-score" class="result-score"></p>
-      <p id="result-rank" hidden></p>
       <p id="result-note" class="note">순위표에 기록되지 않음</p>
+      <ol id="result-list" class="result-list"></ol>
+      <div id="save-form" hidden>
+        <label for="player-name">이름</label>
+        <input id="player-name" maxlength="10" autocomplete="off">
+        <button id="save-button" disabled>기록 저장</button>
+        <p id="save-error" class="note" hidden>기록을 저장할 수 없음</p>
+      </div>
       <button id="retry-button">틀린 문제 다시 풀기</button>
+      <button id="again-button">같은 모드 다시</button>
       <button id="home-button">처음으로</button>
     </section>
 
